@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.firstgroup.workerWeb.worker.mapper.WorkerMapper">
+  
+	<insert id="signUp">
+		INSERT INTO workers (worker_id, worker_password, name, career, gender) 
+		VALUES (#{worker_id},#{worker_password},#{name},#{career},#{gender})
+	</insert>
+  	
+  	<select id="login" resultType="WorkerVO">
+  		SELECT * FROM workers WHERE worker_id = #{worker_id} AND worker_password = #{worker_password}
+  	</select>
+  	
+  	<select id="checkId" resultType="int">
+  		SELECT count(*) FROM workers WHERE worker_id = #{worker_id}
+  	</select>
+  	
+  	<insert id="workStart">
+  		INSERT INTO office_hour (worker_number) values (#{worker_number})
+  	</insert>
+  	
+  	<select id="checkStart" resultType="int">
+  		SELECT count(*) FROM office_hour WHERE worker_number = #{worker_number} AND work_start LIKE concat('DATE(NOW())','%')
+  	</select>
+  	
+  	<update id="workEnd">
+  		UPDATE office_hour SET work_end = NOW() WHERE work_start LIKE concat('DATE(NOW())','%') and worker_number = #{worker_number}
+  	</update>
+  	
+  	<select id="checkEnd" resultType="int">
+  		SELECT count(*) FROM office_hour WHERE worker_number = #{worker_number} AND work_start LIKE concat('DATE(NOW())','%')
+  	</select>
+  	
+ </mapper>
