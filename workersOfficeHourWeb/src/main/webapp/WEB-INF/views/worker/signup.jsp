@@ -14,14 +14,14 @@
 			<h1>Sign Up</h1>
 			<div class="social-container">
 			</div>
-			<input type="text" name="worker_id"placeholder="Id" />
-			<input type="password" name="worker_password"placeholder="Password" />
-			<input type="text" name="pwck"placeholder="Password_check" />
-			<input type="text" name="name"placeholder="Name"/>
-			<input type="text" name="career"placeholder="carrer"/>
-			<div class="gender">
+			<input type="text" name="worker_id" placeholder="Id" required="required" />
+			<input type="password" name="worker_password"placeholder="Password" required="required"/>
+			<input type="password" name="password_check"placeholder="Password_check" required="required"/>
+			<input type="text" name="name"placeholder="Name" required="required"/>
+			<input type="text" name="career"placeholder="carrer" required="required"/>
+			<div class="gender" required="required">
 			<label><input type="checkbox" name="gender" value="남"  onclick="NoMultiChk(this)">Man</label>
-			<label><input type="checkbox" name="gender" value="여"  sonclick="NoMultiChk(this)">Woman</label>
+			<label><input type="checkbox" name="gender" value="여"  onclick="NoMultiChk(this)">Woman</label>
 			</div>
 			<!--아이디, 비번, 이름, 성별, 연차,   -->
 			<input type="submit" class="sign_up" value="Sign UP">
@@ -39,4 +39,9 @@ function NoMultiChk(chk){
 	     }
 	   }
 	}
+	
+var msg = '${msg}';
+if (msg != "") {
+	alert(msg);
+}
 </script>

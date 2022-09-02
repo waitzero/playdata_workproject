@@ -1,6 +1,7 @@
 package com.firstgroup.workerWeb.command;
 
-import com.google.protobuf.Timestamp;
+
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,9 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OfficeHourVO {
 
-	int office_hour_id;
-	int worker_number;
-    Timestamp work_start;
-    Timestamp work_end; 
+	private int office_hour_id;
+	private int worker_number;
+	private Timestamp work_start;
+	private Timestamp work_end; 
+	private String offday;
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.firstgroup.workerWeb.command.WorkerVO;
@@ -30,11 +31,15 @@ public class WorkerController {
 	}
 	
 	@RequestMapping("/worker_signUp") // 회원 가입 후 form 값과 함께 받을 주소 
-	public String signUp(WorkerVO workerVO, RedirectAttributes RA) {
+	public String signUp(@RequestParam("password_check") String password_check,
+						 WorkerVO workerVO, RedirectAttributes RA) {
 		
 		if(workerService.checkId(workerVO.getWorker_id()) != 0) {
 			RA.addFlashAttribute("msg","이미 존재하는 아이디 입니다");
-			return "redirect:login"; // 로그인 페이지
+			return "redirect:signup"; // 로그인 페이지
+		} else if (!workerVO.getWorker_password().equals(password_check)) {
+			RA.addFlashAttribute("msg", "비밀번호를 확인하세요");
+			return "redirect:signup"; // msg와 함께 회원가입 페이지로 전송
 		} else {
 			int result = workerService.signUp(workerVO);
 			if (result == 1) {
@@ -44,7 +49,7 @@ public class WorkerController {
 			} else {
 				
 				RA.addFlashAttribute("msg", "회원 가입에 실패했습니다");
-				return "redirect:login"; // msg와 함께 로그인 페이지로 전송
+				return "redirect:signup"; // msg와 함께 회원가입 페이지로 전송
 			}
 		}
 		

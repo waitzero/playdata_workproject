@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html>
 <html>
@@ -12,36 +12,48 @@
 <body>
 <div class="wrap">
 		<div class="container">
-			<h1>정지영 대리님의 출근 조회</h1>
+			<h1>${sessionVO.name}님의 출근 조회</h1>
 			<hr>
 			<table border="1"  width ="500" height="300" align = "center" >
+	
+	<form action="viewMonthTime">
     <tr align ="center">
 	<p>
-	<td colspan = "2"bgcolor="grey" span style="color:white">11월 출근 조회
-	<select class="month">
-	<option value="jan">1월</option>
-	<option value="feb">2월</option>
-	<option value="mar">3월</option>
-	<option value="apr">4월</option>
-	<option value="may">5월</option>
-	<option value="jun">6월</option>
-	<option value="jul">7월</option>
-	<option value="aug">8월</option>
-	<option value="sep">9월</option>
-	<option value="oct">10월</option>
-	<option value="nov">11월</option>
-	<option value="dec">12월</option>
-	</select>
+	<td colspan = "4"bgcolor="grey" span style="color:white">${mon}월 출근 조회  
+		
+		<input type="number" class="year" placeholder="연도" name="year">
+		
+		<select id="handleAmount" name="month" class="month" style="height: 35px;">
+			<option value="01" ${mon == 01 ? 'selected' : '' }>1월</option>
+			<option value="02" ${mon == 02 ? 'selected' : '' }>2월</option>
+			<option value="03" ${mon == 03 ? 'selected' : '' }>3월</option>
+			<option value="04" ${mon == 04 ? 'selected' : '' }>4월</option>
+			<option value="05" ${mon == 05 ? 'selected' : '' }>5월</option>
+			<option value="06" ${mon == 06 ? 'selected' : '' }>6월</option>
+			<option value="07" ${mon == 07 ? 'selected' : '' }>7월</option>
+			<option value="08" ${mon == 08 ? 'selected' : '' }>8월</option>
+			<option value="09" ${mon == 09 ? 'selected' : '' }>9월</option>
+			<option value="10" ${mon == 10 ? 'selected' : '' }>10월</option>
+			<option value="11" ${mon == 11 ? 'selected' : '' }>11월</option>
+			<option value="12" ${mon == 12 ? 'selected' : '' }>12월</option>
+		</select>
+	<input type="submit" class="submit"value="검색">
 	</td>
+		
+	</form>
 	</p>
     </tr>
     <tr align = "center" bgcolor="grey">
 	<td>날짜</td>
-	<td>시간</td>
-    <c:forEach var="item" items="${items }" varStatus="status">
+	<td>출근</td>
+	<td>퇴근</td>
+	<td>비고</td>
+    <c:forEach var="item" items="${list}" varStatus="status">
 	<tr>
-	<td>${item.day }</td>
-	<td>${item.workin}~${item.workout}</td>
+	<td>${item.work_start.month+1}-${item.work_start.date}</td>
+	<td>${item.work_start}</td>
+	<td>${item.work_end}</td>
+	<td>${item.offday}</td>
 	</tr>
 	</c:forEach>
     

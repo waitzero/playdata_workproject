@@ -28,7 +28,15 @@ body {
     background: whitesmoke;
     /* display: table-cell; */
 }
+.year{
+	width:74px;
+	height:18px;
+}
 .month{
-float:right;
-margin-right:15px;
+	height:22px;
+}
+.submit{
+	margin-left:1rem;
+	height:22px;
+	
 }

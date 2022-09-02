@@ -7,5 +7,6 @@
 	<configuration>
 		<typeAliases>
 			<typeAlias type="com.firstgroup.workerWeb.command.WorkerVO" alias="WorkerVO"/>
+			<typeAlias type="com.firstgroup.workerWeb.command.OfficeHourVO" alias="OfficeHourVO"/>
 		</typeAliases>
 	</configuration>

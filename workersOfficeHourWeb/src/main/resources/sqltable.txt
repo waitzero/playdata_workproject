@@ -14,9 +14,13 @@ create table workers(
 
 create table office_hour(
 	office_hour_id int auto_increment primary key,
-	worker_number int ,
+	worker_number int not null,
     work_start timestamp default current_timestamp,
-    work_end timestamp, 
+    work_end timestamp default concat(DATE(NOW()),'18:00:00'), 
+    offday varchar(10) default '근무',
 	foreign key (worker_number) references workers(worker_number)
 );
 
+ALTER TABLE `office_hour` ADD `offday` varchar(10) default '근무';
+
+alter table office_hour alter column work_end set default concat(DATE(NOW()),'18:00:00');

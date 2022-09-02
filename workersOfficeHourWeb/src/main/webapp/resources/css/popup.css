@@ -1,0 +1,67 @@
+@charset "UTF-8";
+import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+
+* {
+	margin: 0;
+	padding: 0;
+	
+}
+h1{
+	margin:0;
+	margin-left:1rem;
+	font-family: 'Montserrat', sans-serif;
+	color:white;
+}
+hr{
+	margin-top:5px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:15px;
+}
+.content{
+	margin-left:1.5rem;
+}
+.submit{
+	float:right;
+	margin-right:2.2rem;
+	width:85px;
+	height:35px;
+	background: #ff5f2e;
+	font-size:17px;
+	color:white;
+	border-radius: 15px;
+ 	border: none;
+	
+	
+}
+.v_con{
+	margin-bottom: 122px;
+	margin-top:30px;
+}
+.sick_date{
+	margin-top:15px;
+	margin-bottom:35px;
+}
+.h1_con{
+	width:100%;
+	height:50px;
+	background-color: #ff5f2e;
+}
+.sick_kind{
+	witdth:99px;
+	margin-top:15px;
+	margin-bottom:40px;
+}
+.pop_submit{
+
+	margin:50%;
+	width:85px;
+	height:35px;
+	background: #ff5f2e;
+	font-size:17px;
+	color:white;
+	border-radius: 15px;
+ 	border: none;
+	
+}

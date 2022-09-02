@@ -18,16 +18,17 @@
 				<div class="w1">
 				<input type="button" class="w-btn w-btn-red" value="출근" onclick="location.href='work_start'">
 				<input type="button" class="w-btn w-btn-red" value="퇴근" onclick="location.href='work_end'"> 
-				<input type="button" class="w-btn w-btn-red" value="외근">
+
+				<input type="button" class="w-btn w-btn-red" value="병가" onclick="showSick();">
 				</div>	
 				<div class="w2">
-				 <input type="button" class="w-btn w-btn-red" value="병가"> 
-				 <input type="button" class="w-btn w-btn-red" value="출근 기록 조회"> 
-				<input type="button" class="w-btn w-btn-red" value="본인 수당 조회"> 
+				 <input type="button" class="w-btn w-btn-red" value="휴일 선택" onclick="showVacation();"> 
+				 <input type="button" class="w-btn w-btn-red" value="출근 기록 조회" onclick="location.href='viewtime'"> 
+				<input type="button" class="w-btn w-btn-red" value="본인 수당 조회" onclick="location.href='viewmoney'"> 
 				</div>			
 			</div>
 			<hr>
- 	<input type="button" class="w-btn w-btn-red logout" value="로그아웃">
+ 	<input type="button" class="w-btn w-btn-red logout" value="로그아웃" onclick="location.href='logout'">
 		</div>
 	</div>
 	
@@ -36,6 +37,8 @@
 		if (msg != "") {
 			alert(msg);
 		}
+		function showSick() { window.open("sick", "a", "width=400, height=330, left=100, top=50"); }
+		function showVacation() { window.open("vacation", "a", "width=400, height=330, left=100, top=50"); }
 	</script>
 
 </body>

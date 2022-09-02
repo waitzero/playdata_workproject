@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WorkerVO {
 
-	int worker_number;
-	String worker_id;
-	String worker_password;
-    String name;
-    int career;
-    String gender;
+	private int worker_number;
+	private String worker_id;
+	private String worker_password;
+	private String name;
+	private int career;
+	private String gender;
     
 }
