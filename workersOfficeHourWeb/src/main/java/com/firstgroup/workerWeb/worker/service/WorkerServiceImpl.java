@@ -13,11 +13,11 @@ import com.firstgroup.workerWeb.command.WorkerVO;
 import com.firstgroup.workerWeb.worker.mapper.WorkerMapper;
 
 @Service("workerService")
-public class WorkerServiceImpl implements WorkerService{
+public class WorkerServiceImpl implements WorkerService {
 
 	@Autowired
 	WorkerMapper workerMapper;
-	
+
 	@Override
 	public int signUp(WorkerVO workerVO) {
 		return workerMapper.signUp(workerVO);
@@ -35,11 +35,11 @@ public class WorkerServiceImpl implements WorkerService{
 
 	@Override
 	public int workStart(WorkerVO workerVO) {
-		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");        
-		Date now = new Date();         
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date now = new Date();
 		String today = sdf1.format(now);
-		
-		if(workerMapper.checkStart(Integer.toString(workerVO.getWorker_number()), today) == 0) {
+
+		if (workerMapper.checkStart(Integer.toString(workerVO.getWorkerNumber()), today) == 0) {
 			return workerMapper.workStart(workerVO);
 		} else {
 			return 0;
@@ -48,72 +48,83 @@ public class WorkerServiceImpl implements WorkerService{
 
 	@Override
 	public int workEnd(WorkerVO workerVO) {
-		
-        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");        
-        Date now = new Date();         
-        String today = sdf1.format(now);
-        
-        if(workerMapper.checkEnd(Integer.toString(workerVO.getWorker_number()), today) != 0 &&
-        	workerMapper.realCheckEnd(Integer.toString(workerVO.getWorker_number()), today) == 0) {
-        	workerMapper.workEnd(Integer.toString(workerVO.getWorker_number()), today);
-        	return 1;
-        } else if (workerMapper.checkEnd(Integer.toString(workerVO.getWorker_number()), today) != 0 &&
-        		workerMapper.realCheckEnd(Integer.toString(workerVO.getWorker_number()), today) != 0){
-        	workerMapper.updateEnd(Integer.toString(workerVO.getWorker_number()), today);
-        	return 2;
-        } else {
-        	return 0;
-        }
-		
+
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date now = new Date();
+		String today = sdf1.format(now);
+
+		if (workerMapper.checkEnd(Integer.toString(workerVO.getWorkerNumber()), today) != 0
+				&& workerMapper.realCheckEnd(Integer.toString(workerVO.getWorkerNumber()), today) == 0) {
+			workerMapper.workEnd(Integer.toString(workerVO.getWorkerNumber()), today);
+			return 1;
+		} else if (workerMapper.checkEnd(Integer.toString(workerVO.getWorkerNumber()), today) != 0
+				&& workerMapper.realCheckEnd(Integer.toString(workerVO.getWorkerNumber()), today) != 0) {
+			workerMapper.updateEnd(Integer.toString(workerVO.getWorkerNumber()), today);
+			return 2;
+		} else {
+			return 0;
+		}
+
 	}
 
 	@Override
 	public int chooseDayOff(WorkerVO vo, String day, String reason) {
-		
-		if(workerMapper.checkStart(Integer.toString(vo.getWorker_number()), day) == 0) {
-			return workerMapper.chooseDayOff(Integer.toString(vo.getWorker_number()),day,reason);
+
+		if (workerMapper.checkStart(Integer.toString(vo.getWorkerNumber()), day) == 0) {
+			return workerMapper.chooseDayOff(Integer.toString(vo.getWorkerNumber()), day, reason);
 		} else {
 			return 0;
 		}
 	}
-		
+
 	@Override
 	public List<OfficeHourVO> getMonthOfficeHour(String year, String month, WorkerVO workerVO) {
-		return workerMapper.getMonthOfficeHour(year,month,Integer.toString(workerVO.getWorker_number()));
+		return workerMapper.getMonthOfficeHour(year, month, Integer.toString(workerVO.getWorkerNumber()));
 	}
-	
-
 
 	@Override
 	public AmountVO getMonthPay(String year, String month, WorkerVO workerVO) {
-		
-		List<OfficeHourVO> list = workerMapper.getMonthOfficeHour(year, month, Integer.toString(workerVO.getWorker_number()));
-		
+
+		List<OfficeHourVO> list = workerMapper.getMonthOfficeHour(year, month,
+				Integer.toString(workerVO.getWorkerNumber()));
+
+		AmountVO vo = new AmountVO();
+
 		int totalWorkTime = 0;
-		int pay1 = 10000;
-		int pay2 = 15000;
-		int pay3 = 20000;
-		
+		int payJunior = 10000;
+		int paySenior = 15000;
+		int payPro = 20000;
+		int realPay = 0;
+
 		int monthPay = 0;
-		
-		for(OfficeHourVO vo : list) {
-			
-			int workTime = vo.getWork_end().getHours() - vo.getWork_start().getHours();
+		int overPay = 0;
+
+		for (OfficeHourVO item : list) {
+			int workTime = item.getWorkEnd().getHour() - item.getWorkStart().getHour();
 			totalWorkTime += workTime;
 		}
+
 		if (workerVO.getCareer() > 10) {
-			monthPay += totalWorkTime * pay3;
+			realPay = payPro;
 		} else if (workerVO.getCareer() < 4) {
-			monthPay += totalWorkTime * pay1;
+			realPay = payJunior;
 		} else {
-			monthPay += totalWorkTime * pay2;
+			realPay = paySenior;
 		}
-		
-		AmountVO vo = new AmountVO();
-		vo.setTotalAmount(monthPay);
+
+		if (totalWorkTime <= 160) {
+			monthPay = realPay * totalWorkTime;
+		} else {
+			monthPay = realPay * 160;
+			overPay = (int) ((realPay * (totalWorkTime - 160)) * 1.5);
+		}
+
 		vo.setTotalWorkTime(totalWorkTime);
 		vo.setMonth(month);
-		
+		vo.setOverPay(overPay);
+		vo.setMonthPay(monthPay);
+		vo.setTotalAmount(monthPay + overPay);
+
 		return vo;
 	}
 }

@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+
+
+.back{
+	background-color: white;
+	display: flex;
+	height:45px;
+	border-radius:0px 0px 10px 10px;
+	 box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);	
+}
+.header_nav{
+	display: flex;
+	width:350px;
+	float:right;	
+}
+.text{
+	float:left;
+}
+
+.header_ul{
+	display: flex;
+	list-style: none;
+	flaot:right;	
+}
+.title{
+	width:100%;
+	margin-left:15px;
+}
+.title_text{
+	display:inline;
+	width:350px;
+	margin-right:0;
+}
+.content{
+	float:right;
+	width:450px;
+	font-size: 20px;	
+	margin-top:5px;
+}
+a{
+	margin-right:15px;
+text-decoration : none;
+color:black;
+
+}

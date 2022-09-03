@@ -16,13 +16,13 @@
 			<hr>
 			<div class="wrap-flex"><!-- 플렉스 -->
 				<div class="w1">
-				<input type="button" class="w-btn w-btn-red" value="출근" onclick="location.href='work_start'">
-				<input type="button" class="w-btn w-btn-red" value="퇴근" onclick="location.href='work_end'"> 
+				<input type="button" class="w-btn w-btn-red" value="출근" onclick="location.href='workStart'">
+				<input type="button" class="w-btn w-btn-red" value="퇴근" onclick="location.href='workEnd'"> 
 
 				<input type="button" class="w-btn w-btn-red" value="병가" onclick="showSick();">
 				</div>	
 				<div class="w2">
-				 <input type="button" class="w-btn w-btn-red" value="휴일 선택" onclick="showVacation();"> 
+				 <input type="button" class="w-btn w-btn-red" value="연차" onclick="showVacation();"> 
 				 <input type="button" class="w-btn w-btn-red" value="출근 기록 조회" onclick="location.href='viewtime'"> 
 				<input type="button" class="w-btn w-btn-red" value="본인 수당 조회" onclick="location.href='viewmoney'"> 
 				</div>			

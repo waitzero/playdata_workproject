@@ -13,11 +13,11 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container sign-in-container">
-			<form action="worker_loginForm" method="post">
+			<form action="workerLoginForm" method="post">
 				<h1>Sign in</h1>
 				<div class="social-container"></div>
-				<input type="text" name="worker_id" placeholder="Id" /> 
-				<input type="password" name="worker_password" placeholder="Password" /> 
+				<input type="text" name="workerId" placeholder="Id" /> 
+				<input type="password" name="workerPassword" placeholder="Password" /> 
 					<input type="submit" class="sign_in" value="Sign In">
 			</form>
 		</div>

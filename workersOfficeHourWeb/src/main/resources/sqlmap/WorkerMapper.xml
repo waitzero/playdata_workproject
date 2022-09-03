@@ -7,51 +7,51 @@
   
 	<insert id="signUp">
 		INSERT INTO workers (worker_id, worker_password, name, career, gender) 
-		VALUES (#{worker_id},#{worker_password},#{name},#{career},#{gender})
+		VALUES (#{workerId},#{workerPassword},#{name},#{career},#{gender})
 	</insert>
   	
   	<select id="login" resultType="WorkerVO">
-  		SELECT * FROM workers WHERE worker_id = #{worker_id} AND worker_password = #{worker_password}
+  		SELECT * FROM workers WHERE worker_id = #{workerId} AND worker_password = #{workerPassword}
   	</select>
   	
   	<select id="checkId" resultType="int">
-  		SELECT count(*) FROM workers WHERE worker_id = #{worker_id}
+  		SELECT count(*) FROM workers WHERE worker_id = #{workerId}
   	</select>
   	
   	<insert id="workStart">
-  		INSERT INTO office_hour (worker_number) values (#{worker_number})
+  		INSERT INTO office_hour (worker_number) values (#{workerNumber})
   	</insert>
   	
   	<select id="checkStart" resultType="int" parameterType="String">
-  		SELECT count(*) FROM office_hour WHERE worker_number = #{worker_number} AND work_start LIKE concat(#{today},'%')
+  		SELECT count(*) FROM office_hour WHERE worker_number = #{workerNumber} AND work_start LIKE concat(#{today},'%')
   	</select>
   	
   	<update id="workEnd" parameterType="String">
-  		UPDATE office_hour SET work_end = NOW() WHERE work_start LIKE concat(#{today},'%') and worker_number = #{worker_number}
+  		UPDATE office_hour SET work_end = NOW() WHERE work_start LIKE concat(#{today},'%') and worker_number = #{workerNumber}
   	</update>
   	
   	<select id="checkEnd" resultType="int" parameterType="String">
-  		SELECT count(*) FROM office_hour WHERE worker_number = #{worker_number} AND work_start LIKE concat(#{today},'%')
+  		SELECT count(*) FROM office_hour WHERE worker_number = #{workerNumber} AND work_start LIKE concat(#{today},'%')
   	</select>
   	
   	<select id="realCheckEnd" resultType="int" parameterType="String">
-  		SELECT count(*) FROM office_hour WHERE worker_number = #{worker_number} AND work_end LIKE concat(#{today},'%')
+  		SELECT count(*) FROM office_hour WHERE worker_number = #{workerNumber} AND work_end LIKE concat(#{today},'%')
   	</select>
   	
   	<insert id="chooseDayOff">
-  		INSERT INTO office_hour (worker_number, work_start, work_end, offday) values (#{worker_number},#{day},#{day},#{reason})
+  		INSERT INTO office_hour (worker_number, work_start, work_end, offday) values (#{workerNumber},#{day},#{day},#{reason})
   	</insert>
   	
   	<update id="updateEnd">
-  		UPDATE office_hour SET work_end = NOW() WHERE work_start LIKE concat(#{today},'%') and worker_number = #{worker_number}
+  		UPDATE office_hour SET work_end = NOW() WHERE work_start LIKE concat(#{today},'%') and worker_number = #{workerNumber}
   	</update>
   	
   	<select id="getMonthOfficeHour" resultType="OfficeHourVO" parameterType="String">
-		select * from office_hour WHERE work_start like concat(#{year},'-',#{month},'%') AND worker_number = #{worker_number} ORDER BY work_start
+		select * from office_hour WHERE work_start like concat(#{year},'-',#{month},'%') AND worker_number = #{workerNumber} ORDER BY work_start
 	</select>
   	
   	<select id="getMonthPay" resultType="OfficeHourVO" parameterType="String" >
- 		select * from office_hour WHERE work_start like concat(#{year},'-',#{month},'%') AND worker_number = #{worker_number} 	
+ 		select * from office_hour WHERE work_start like concat(#{year},'-',#{month},'%') AND worker_number = #{workerNumber} 	
   	</select>
   	
  </mapper>

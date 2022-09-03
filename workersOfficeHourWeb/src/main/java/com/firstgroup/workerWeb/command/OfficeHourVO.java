@@ -1,21 +1,25 @@
 package com.firstgroup.workerWeb.command;
 
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class OfficeHourVO {
 
-	private int office_hour_id;
-	private int worker_number;
-	private Timestamp work_start;
-	private Timestamp work_end; 
+	private int officeHourId;
+	private int workerNumber;
+	private LocalDateTime workStart;
+	private LocalDateTime workEnd; 
 	private String offday;
 	
 }

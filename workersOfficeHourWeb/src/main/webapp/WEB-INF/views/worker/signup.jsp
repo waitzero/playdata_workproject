@@ -10,16 +10,16 @@
 <body>
 <div class="container" id="container">
 	<div class="form-container sign-in-container">
-		<form action="worker_signUp">
+		<form action="workerSignUp">
 			<h1>Sign Up</h1>
 			<div class="social-container">
 			</div>
-			<input type="text" name="worker_id" placeholder="Id" required="required" />
-			<input type="password" name="worker_password"placeholder="Password" required="required"/>
-			<input type="password" name="password_check"placeholder="Password_check" required="required"/>
-			<input type="text" name="name"placeholder="Name" required="required"/>
-			<input type="text" name="career"placeholder="carrer" required="required"/>
-			<div class="gender" required="required">
+			<input type="text" name="workerId" placeholder="Id" required="required" />
+			<input type="password" name="workerPassword"placeholder="Password" required="required"/>
+			<input type="password" name="passwordCheck"placeholder="Password_check" required="required"/>
+			<input type="text" name="name" placeholder="Name" required="required"/>
+			<input type="text" name="career" placeholder="carrer" required="required"/>
+			<div class="gender" >
 			<label><input type="checkbox" name="gender" value="남"  onclick="NoMultiChk(this)">Man</label>
 			<label><input type="checkbox" name="gender" value="여"  onclick="NoMultiChk(this)">Woman</label>
 			</div>
@@ -27,6 +27,7 @@
 			<input type="submit" class="sign_up" value="Sign UP">
 		</form>
 	</div>
+</div>	
 </body>
 </html>
 

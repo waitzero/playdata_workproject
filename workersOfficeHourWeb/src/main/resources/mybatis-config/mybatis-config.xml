@@ -5,6 +5,9 @@
 
 	<!-- VO클래스의 단축명을 선언 -->
 	<configuration>
+		<settings>
+			<setting name="mapUnderscoreToCamelCase" value="true"/>
+		</settings>
 		<typeAliases>
 			<typeAlias type="com.firstgroup.workerWeb.command.WorkerVO" alias="WorkerVO"/>
 			<typeAlias type="com.firstgroup.workerWeb.command.OfficeHourVO" alias="OfficeHourVO"/>
